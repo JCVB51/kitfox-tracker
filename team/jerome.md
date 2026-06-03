@@ -12,3 +12,6 @@ I want to improve my Git.
 
 ## Pastries
 My favorite place to grab conchas is La Perla Bakery.
+
+## Preferred communication style
+I prefer we contact on discord.
