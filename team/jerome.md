@@ -15,3 +15,6 @@ My favorite place to grab conchas is La Perla Bakery.
 
 ## Preferred communication style
 I prefer we contact on discord.
+
+## Availability
+Monday-Friday at 12PM to 5 PM.
