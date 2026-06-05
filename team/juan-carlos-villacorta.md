@@ -10,3 +10,7 @@ Git/GitHub workflows, and backend development.
 
 ## One area for growth
 I want to improve my skills with APIs and software testing.
+
+
+## Pastries
+I am still looking for a favorite place to grab conchas in Bakersfield.
