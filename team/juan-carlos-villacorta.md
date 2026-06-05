@@ -8,4 +8,5 @@ including database design, CRUD logic and server-side validation.
 I have technical strengths in databases, UI development, 
 Git/GitHub workflows, and backend development.
 
-
+## One area for growth
+I want to improve my skills with APIs and software testing.
