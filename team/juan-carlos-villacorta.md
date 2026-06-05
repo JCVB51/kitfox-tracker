@@ -14,3 +14,7 @@ I want to improve my skills with APIs and software testing.
 
 ## Pastries
 I am still looking for a favorite place to grab conchas in Bakersfield.
+
+## Preferred communication style
+I prefer communicating through Discord because it allows the team to share quick updates, 
+ask questions and respond to blockers in real time.
