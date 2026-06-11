@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import SubmitSighting from './pages/SubmitSighting.jsx'
 import Sightings from './pages/Sightings.jsx'
