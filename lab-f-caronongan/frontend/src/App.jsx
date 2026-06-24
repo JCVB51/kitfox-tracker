@@ -1,4 +1,4 @@
-import { Link, Routes, Route } from 'react-router-dom'
+import { Link, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import SubmitSighting from './pages/SubmitSighting.jsx'
 import Sightings from './pages/Sightings.jsx'
@@ -10,6 +10,7 @@ function App() {
     <>
       <header>
         <h1>Kit Fox Tracker</h1>
+
         <nav>
           <Link to="/">Home</Link>
           <Link to="/submit">Submit Sighting</Link>
