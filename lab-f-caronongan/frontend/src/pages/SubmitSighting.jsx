@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { API_BASE_URL } from '../api.js'
+import { createSighting } from '../services/sightingsApi.js'
 
 function SubmitSighting() {
   const [observerName, setObserverName] = useState('')
@@ -11,6 +11,7 @@ function SubmitSighting() {
 
   async function handleSubmit(event) {
     event.preventDefault()
+
     setMessage('')
     setError('')
     setSubmitting(true)
@@ -18,34 +19,19 @@ function SubmitSighting() {
     const newSighting = {
       observer_name: observerName,
       sighting_date: sightingDate,
-      location_name: locationName
+      location_name: locationName,
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/sightings`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newSighting)
-      })
+      const data = await createSighting(newSighting)
 
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`)
-      }
-
-      const result = await response.json()
-
-      setMessage(
-        `Sighting created with ID ${result.id}. Check the Sightings page to see the new record.`
-      )
-
+      setMessage(`Sighting created with ID ${data.id}.`)
       setObserverName('')
       setSightingDate('')
       setLocationName('')
     } catch (err) {
       console.error(err)
-      setError('Could not create the sighting. Check your API URL and backend.')
+      setError('Could not submit the sighting.')
     } finally {
       setSubmitting(false)
     }
@@ -53,13 +39,11 @@ function SubmitSighting() {
 
   return (
     <section>
-      <h2>Submit Sighting</h2>
-
-      <p>This form sends a POST request to the Express/MySQL API.</p>
+      <h2>Submit a Sighting</h2>
 
       <form onSubmit={handleSubmit}>
         <label>
-          Observer name
+          Observer Name
           <input
             type="text"
             value={observerName}
@@ -69,7 +53,7 @@ function SubmitSighting() {
         </label>
 
         <label>
-          Sighting date
+          Sighting Date
           <input
             type="date"
             value={sightingDate}
@@ -79,12 +63,11 @@ function SubmitSighting() {
         </label>
 
         <label>
-          Location name
+          Location Name
           <input
             type="text"
             value={locationName}
             onChange={(event) => setLocationName(event.target.value)}
-            placeholder="Example: CSUB campus"
             required
           />
         </label>
