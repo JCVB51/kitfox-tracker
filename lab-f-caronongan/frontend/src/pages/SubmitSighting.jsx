@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { API_BASE_URL } from '../api.js'
+import { createSighting } from '../services/sightingsApi.js'
 
 function SubmitSighting() {
   const [observerName, setObserverName] = useState('')
@@ -11,6 +11,7 @@ function SubmitSighting() {
 
   async function handleSubmit(event) {
     event.preventDefault()
+
     setMessage('')
     setError('')
     setSubmitting(true)
@@ -18,23 +19,11 @@ function SubmitSighting() {
     const newSighting = {
       observer_name: observerName,
       sighting_date: sightingDate,
-      location_name: locationName
+      location_name: locationName,
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/sightings`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newSighting)
-      })
-
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`)
-      }
-
-      const result = await response.json()
+      const result = await createSighting(newSighting)
 
       setMessage(
         `Sighting created with ID ${result.id}. Check the Sightings page to see the new record.`

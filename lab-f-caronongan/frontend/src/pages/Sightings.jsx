@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { API_BASE_URL } from '../api.js'
+import { getSightings } from '../services/sightingsApi.js'
 
 function Sightings() {
   const [sightings, setSightings] = useState([])
@@ -9,13 +9,7 @@ function Sightings() {
   useEffect(() => {
     async function loadSightings() {
       try {
-        const response = await fetch(`${API_BASE_URL}/sightings`)
-
-        if (!response.ok) {
-          throw new Error(`API request failed with status ${response.status}`)
-        }
-
-        const data = await response.json()
+        const data = await getSightings()
         setSightings(data)
       } catch (err) {
         console.error(err)
@@ -42,7 +36,9 @@ function Sightings() {
       <section>
         <h2>Sightings</h2>
         <p>{error}</p>
-        <p>Check that your Lab E3 backend is running and that your API URL is correct.</p>
+        <p>
+          Check that your Lab E3 backend is running and that your API URL is correct.
+        </p>
       </section>
     )
   }
@@ -50,6 +46,7 @@ function Sightings() {
   return (
     <section>
       <h2>Sightings</h2>
+
       <p>These records are loaded from the Express/MySQL API.</p>
 
       {sightings.length === 0 ? (
