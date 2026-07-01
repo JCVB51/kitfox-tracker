@@ -23,15 +23,18 @@ function SubmitSighting() {
     }
 
     try {
-      const data = await createSighting(newSighting)
+      const result = await createSighting(newSighting)
 
-      setMessage(`Sighting created with ID ${data.id}.`)
+      setMessage(
+        `Sighting created with ID ${result.id}. Check the Sightings page to see the new record.`
+      )
+
       setObserverName('')
       setSightingDate('')
       setLocationName('')
     } catch (err) {
       console.error(err)
-      setError('Could not submit the sighting.')
+      setError('Could not create the sighting. Check your API URL and backend.')
     } finally {
       setSubmitting(false)
     }
@@ -39,11 +42,13 @@ function SubmitSighting() {
 
   return (
     <section>
-      <h2>Submit a Sighting</h2>
+      <h2>Submit Sighting</h2>
+
+      <p>This form sends a POST request to the Express/MySQL API.</p>
 
       <form onSubmit={handleSubmit}>
         <label>
-          Observer Name
+          Observer name
           <input
             type="text"
             value={observerName}
@@ -53,7 +58,7 @@ function SubmitSighting() {
         </label>
 
         <label>
-          Sighting Date
+          Sighting date
           <input
             type="date"
             value={sightingDate}
@@ -63,11 +68,12 @@ function SubmitSighting() {
         </label>
 
         <label>
-          Location Name
+          Location name
           <input
             type="text"
             value={locationName}
             onChange={(event) => setLocationName(event.target.value)}
+            placeholder="Example: CSUB campus"
             required
           />
         </label>
